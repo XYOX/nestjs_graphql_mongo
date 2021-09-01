@@ -5,7 +5,7 @@ import { Cat } from './interfaces/cat.interface';
 import { CatInput } from './inputs/cat.input';
 
 @Injectable()
-export class CatsService {
+export class CatService {
   constructor(@InjectModel('Cat') private readonly catModel: Model<Cat>) {}
 
   async create(createCatDto: CatInput): Promise<Cat> {

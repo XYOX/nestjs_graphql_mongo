@@ -1,11 +1,11 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CatsService } from './cats.service';
+import { CatService } from './cat.service';
 import { CatType } from './dto/cat.dto';
 import { CatInput } from './inputs/cat.input';
 
 @Resolver()
-export class CatsResolver {
-  constructor(private readonly catsService: CatsService) {}
+export class CatResolver {
+  constructor(private readonly catService: CatService) {}
 
   @Query(() => String)
   async hello() {
@@ -14,11 +14,11 @@ export class CatsResolver {
 
   @Query(() => [CatType])
   async cats() {
-    return this.catsService.findAll();
+    return this.catService.findAll();
   }
 
   @Mutation(() => CatType)
   async createCat(@Args('input') input: CatInput) {
-    return this.catsService.create(input);
+    return this.catService.create(input);
   }
 }
