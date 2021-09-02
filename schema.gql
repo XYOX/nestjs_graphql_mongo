@@ -2,11 +2,31 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Characteristics {
+  lifespan: String!
+  size: String!
+  coat: String!
+  color: String!
+}
+
 type CatType {
   id: ID!
-  name: String!
-  age: Int!
   breed: String!
+  characteristics: Characteristics!
+  created: DateTime!
+  updated: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input CharacteristicsInput {
+  lifespan: String!
+  size: String!
+  coat: String!
+  color: String!
 }
 
 type Query {
@@ -15,11 +35,12 @@ type Query {
 }
 
 type Mutation {
-  createCat(input: CatInput!): CatType!
+  createCat(input: CatInputType!): CatType!
+  updateCat(input: CatInputType!, id: String!): CatType!
+  deleteCat(id: String!): CatType!
 }
 
-input CatInput {
-  name: String!
-  age: Int!
+input CatInputType {
   breed: String!
+  characteristics: CharacteristicsInput!
 }
